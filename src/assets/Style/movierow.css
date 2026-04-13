@@ -1,0 +1,19 @@
+.movie-row {
+  margin-bottom: 30px;
+}
+
+.movie-row h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.movie-row-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.movie-row-container::-webkit-scrollbar {
+  display: none;
+}

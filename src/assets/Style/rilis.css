@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  background: #0f0f0f;
+  font-family: sans-serif;
+  color: white;
+}
+
+.container {
+  padding: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.section-header h2 {
+  font-size: 24px;
+}
+
+.crud-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.crud-controls input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  width: 150px;
+}
+
+.crud-controls button {
+  background: #00c853;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.movie-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.movie-card {
+  min-width: 180px;
+  background: #1c1c1c;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
+  font-size: 12px;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 8px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.movie-card p {
+  margin-top: 10px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.card-actions button {
+  background: #ff1744;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.card-actions button:first-child {
+  background: #2979ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .movie-grid {
+    flex-wrap: wrap;
+  }
+}

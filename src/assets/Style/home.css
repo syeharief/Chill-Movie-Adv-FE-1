@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  background: #0f172a;
+  font-family: Arial;
+  color: white;
+}
+
+.home {
+  width: 100%;
+}
+
+/* MOVIE ROW */
+
+.movie-row {
+  padding: 20px 40px;
+}
+
+.movie-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.movie-card {
+  width: 150px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  .movie-card {
+    width: 110px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+}
