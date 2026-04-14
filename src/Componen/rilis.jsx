@@ -1,78 +1,47 @@
 import React, { useEffect, useState } from "react";
 import "../assets/Style/rilis.css";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchMovies,
+  createMovie,
+  editMovie,
+  removeMovie,
+} from "../store/redux/movieSlice";
 
 export default function HomePage() {
-    const [data, setData] = useState([]);
-
-  useEffect(() =>{
-    //logic fetch menu
-      axios.get("https://69dc713784f912a26403aee0.mockapi.io/movie").then((response) => {
-      //handle success
-      console.log("response", response.data);
-      setData(response.data);
-  });
-  }, []);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.movies.data);
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [editId, setEditId] = useState(null);
 
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
   const handleSubmit = () => {
-  if (!title || !image) return;
+    if (!title || !image) return;
 
-  if (editId) {
-    // UPDATE
-    axios.put(`https://69dc713784f912a26403aee0.mockapi.io/movie/${editId}`, {
-      title,
-      image
-    })
-    .then(() => {
-      fetchData();
+    if (editId) {
+      dispatch(editMovie({ id: editId, movie: { title, image } }));
       setEditId(null);
-    });
+    } else {
+      dispatch(createMovie({ title, image }));
+    }
 
-  } else {
-    // ADD
-    axios.post("https://69dc713784f912a26403aee0.mockapi.io/movie", {
-      title,
-      image
-    })
-    .then(() => {
-      fetchData();
-    });
-  }
-
-  setTitle("");
-  setImage("");
-};
-
-  const fetchData = () => {
-    axios
-      .get("https://69dc713784f912a26403aee0.mockapi.io/api/v1/movie")
-      .then((res) => {
-        setData(res.data);
-      });
+    setTitle("");
+    setImage("");
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  // DELETE
   const handleDelete = (id) => {
-    axios
-      .delete(`https://69dc713784f912a26403aee0.mockapi.io/movie/${id}`)
-      .then(() => {
-        fetchData();
-      });
+    dispatch(removeMovie(id));
   };
 
-  // EDIT
   const handleEdit = (movie) => {
-      setTitle(movie.title);
-      setImage(movie.image);
-      setEditId(movie.id);
+    setTitle(movie.title);
+    setImage(movie.image);
+    setEditId(movie.id);
   };
 
   return (
@@ -100,22 +69,20 @@ export default function HomePage() {
       </div>
 
       <div className="movie-grid">
-        {!data ? (
-          <p>Error load data</p>
-        ) : data.length === 0 ? (
+        {data.length === 0 ? (
           <p>Tidak ada data</p>
         ) : (
           data.map((movie) => (
-      <div className="movie-card" key={movie.id}>
-        <img src={movie.image} alt={movie.title} />
-        <p>{movie.title}</p>
+            <div className="movie-card" key={movie.id}>
+              <img src={movie.image} alt={movie.title} />
+              <p>{movie.title}</p>
 
-        <div className="card-actions">
-          <button onClick={() => handleEdit(movie)}>Edit</button>
-          <button onClick={() => handleDelete(movie.id)}>Delete</button>
-        </div>
-      </div>
-    ))
+              <div className="card-actions">
+                <button onClick={() => handleEdit(movie)}>Edit</button>
+                <button onClick={() => handleDelete(movie.id)}>Delete</button>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

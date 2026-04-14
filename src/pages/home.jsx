@@ -21,10 +21,8 @@ import litte from "../img/poster/portrait/p6.png";
 import black from "../img/poster/portrait/p7.png";
 import big from "../img/poster/portrait/p12.png";
 import suzume from "../img/poster/portrait/p14.png";
-import ant from "../img/poster/portrait/p16.png";
-import doctor from "../img/poster/portrait/p17.png";
-import bay from "../img/poster/portrait/portrait18.png";
 /* DATA */
+
 const continueWatching = [
   { title: "Big Hero 6", image: bighero },
   { title: "Shazam", image: shazam },
@@ -51,16 +49,6 @@ const trending = [
   { title: "Big Hero 6", image: big },
   { title: "Suzume", image: suzume },
   { title: "Avatar", image: avatar },
-];
-
-const newRelease = [
-  { title: "Batman", image: batman },
-  { title: "Avatar", image: avatar },
-  { title: "Suzume", image: suzume },
-  { title: "Fast X", image: Fast },
-  { title: "Ant-Man Quantumania", image: ant },
-  { title: "Doctor Stranger", image: doctor },
-  { title: "Baymax", image: bay },
 ];
 
 const Home = () => {
